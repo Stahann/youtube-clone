@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom'
 import { Box } from '@mui/material'
 import Navbar from '../components/nav/Navbar'
 import Drawer from '../components/nav/Drawer'
+// import { PersistentDrawer as Drawer } from '../components/nav/Drawer'
 import { Main } from '../components/nav/Main'
 
 const RootLayout = () => {
@@ -15,7 +16,7 @@ const RootLayout = () => {
     <>
       <Box>
         <Drawer open={open} toggle={toggleDrawer} />
-        <Main>
+        <Main sx={{ bgcolor: 'tomato' }}>
           <Outlet />
         </Main>
       </Box>

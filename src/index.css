@@ -86,3 +86,16 @@ a {
     width: 200px;
   }
 }
+
+.Mui-selected {
+  background-color: rgb(178, 1, 1) !important;
+  border-radius: 30px !important;
+}
+
+.MuiList-root {
+  padding-right: 20px !important;
+}
+
+.MuiDrawer-paper {
+  border-right: 1.5px solid #838181 !important;
+}
