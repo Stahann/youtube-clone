@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Typography, Card, CardContent, CardMedia } from '@mui/material'
 import { CheckCircle } from '@mui/icons-material'
 
-import { IVideo } from './Videos'
+import { IVideo } from '../types/types'
 import {
   demoThumbnailUrl,
   demoVideoUrl,

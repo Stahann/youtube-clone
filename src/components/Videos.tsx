@@ -3,40 +3,11 @@ import { FC } from 'react'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import ChannelCard from './ChannelCard'
 import VideoCard from './VideoCard'
+import { Thumbnails } from '../types/types'
+import { IVideo } from '../types/types'
 
 interface IVideosProps {
   videos: IVideo[]
-}
-
-export type Thumbnails = {
-  default: {
-    url: string
-  }
-  high: {
-    url: string
-  }
-  medium: {
-    url: string
-  }
-}
-
-export interface IVideo {
-  id: {
-    kind: string
-    videoId: string
-  }
-  kind: string
-  snippet: {
-    channelId: string
-    channelTitle: string
-    description: string
-    liveBroadcastContent: string
-    publishTime: string
-    publishedAt: string
-    title: string
-
-    thumbnails: Thumbnails
-  }
 }
 
 const channel = 'youtube#channel'

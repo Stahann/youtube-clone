@@ -3,52 +3,11 @@ import { useParams } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 
 import { fetchFromAPI } from '../components/services/fetchFromAPI'
-import { Thumbnails } from '../components/Videos'
+import { Thumbnails } from '../types/types'
 import ChannelDetailsCard from '../components/ChannelDetailsCard'
 import VideoCard from '../components/VideoCard'
-import { IVideo } from '../components/Videos'
-
-export interface IChannel {
-  brandingSettings: {
-    channel: {
-      country: string
-      description: string
-      keywords: string
-      title: string
-      trackingAnalyticsAccountId: string
-      unsubscribedTrailer: string
-    }
-    image: {
-      bannerExternalUrl: string
-    }
-  }
-  contentDetails: {
-    relatedPlaylists: {
-      likes: string
-      uploads: string
-    }
-  }
-  snippet: {
-    country: string
-    customUrl: string
-    description: string
-    publishedAt: string
-    title: string
-    localized: {
-      description: string
-      title: string
-    }
-    thumbnails: Thumbnails
-  }
-  statistics: {
-    hiddenSubscriberCount: boolean
-    subscriberCount: string
-    videoCount: string
-    viewCount: string
-  }
-  id: string
-  kind: string
-}
+import { IVideo } from '../types/types'
+import { IChannel } from '../types/types'
 
 const ChannelDetails = () => {
   const [channelDetail, setChannelDetail] = useState<IChannel | null>(null)

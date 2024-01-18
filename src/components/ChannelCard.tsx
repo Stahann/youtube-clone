@@ -4,8 +4,9 @@ import { CheckCircle } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 
 import { demoProfilePicture } from '../utils/constants'
-import ChannelDetails, { IChannel } from '../pages/ChannelDetails'
-import { IVideo } from './Videos'
+import ChannelDetails from '../pages/ChannelDetails'
+import { IChannel } from '../types/types'
+import { IVideo } from '../types/types'
 
 interface IChannelCardProps {
   channelDetail: IVideo
