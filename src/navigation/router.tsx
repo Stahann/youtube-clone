@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
       { path: ':category', element: <Feed /> },
       { path: '/video/:id', element: <VideoDetails /> },
       { path: '/channel/:id', element: <ChannelDetails /> },
-      { path: '/search', element: <SearchFeed /> },
+      { path: '/search/:searchTerm', element: <SearchFeed /> },
     ],
   },
 ])
