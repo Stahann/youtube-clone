@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FC } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Typography } from '@mui/material'
+import { Typography, Card } from '@mui/material'
 
 import Videos from '../components/Videos'
 import { fetchFromAPI } from '../components/services/fetchFromAPI'
@@ -10,13 +10,17 @@ const Feed = () => {
   const location = useLocation()
 
   useEffect(() => {
-    fetchFromAPI(`search?part=snippet&q=${location.pathname}`)
+    fetchFromAPI(`search?part=snippet&q=${location.pathname}`).then((data) =>
+      setVideos(data.items)
+    )
   }, [location])
 
   return (
     <>
-      <Typography sx={{ color: 'secondary.main' }}>New videos</Typography>
-      <Videos />
+      <Typography>
+        {location.pathname.slice(1, 15).toUpperCase()} videos
+      </Typography>
+      <Videos videos={videos} />
     </>
   )
 }

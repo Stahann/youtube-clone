@@ -17,7 +17,8 @@ const RootLayout = () => {
         <Drawer open={open} toggle={toggleDrawer} />
         <Main
           sx={{
-            bgcolor: 'tomato',
+            display: '-ms-flexbox',
+            color: 'secondary.main',
             flexGrow: '1',
             padding: '24px',
             marginLeft: open ? '0px' : '-240px',

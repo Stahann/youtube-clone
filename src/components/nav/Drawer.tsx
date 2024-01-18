@@ -49,9 +49,6 @@ export default function PersistentDrawer({
     navigate(path)
   }
 
-  console.log(location)
-  console.log(navigate)
-
   return (
     <>
       <Box sx={{ flex: '0 0 auto', width: '260px' }}>
