@@ -18,33 +18,34 @@ const Videos: FC<IVideosProps> = (props) => {
   return (
     <>
       <Grid container rowSpacing={5}>
-        {props.videos.map((item, idx) => (
-          <Grid
-            xs={12}
-            sm={4}
-            key={idx}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            {item.id.kind === channel ? (
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: '20px',
-                }}
-              >
-                <ChannelCard channelDetail={item} />
-              </Box>
-            ) : (
-              <VideoCard video={item} />
-            )}
-          </Grid>
-        ))}
+        {props.videos &&
+          props.videos.map((item, idx) => (
+            <Grid
+              xs={12}
+              sm={4}
+              key={idx}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {item.id.kind === channel ? (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '20px',
+                  }}
+                >
+                  <ChannelCard channelDetail={item} />
+                </Box>
+              ) : (
+                <VideoCard video={item} />
+              )}
+            </Grid>
+          ))}
       </Grid>
     </>
   )
