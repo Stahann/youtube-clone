@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { IChannel } from '../types/types'
 import { Box, CardContent, CardMedia, Typography } from '@mui/material'
 import { demoProfilePicture } from '../utils/constants'

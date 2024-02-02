@@ -8,6 +8,7 @@ import ChannelDetailsCard from '../components/ChannelDetailsCard'
 import VideoCard from '../components/VideoCard'
 import { IVideo } from '../types/types'
 import { IChannel } from '../types/types'
+import React from 'react'
 
 const ChannelDetails = () => {
   const [channelDetail, setChannelDetail] = useState<IChannel | null>(null)
