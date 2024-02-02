@@ -1,22 +1,54 @@
-import React, { useState } from 'react'
-import { TextField, Button, Typography } from '@mui/material'
-import { Form } from 'react-router-dom'
+import { TextField, Button, Typography, Box } from '@mui/material'
+import {
+  Form,
+  Link,
+  useSearchParams,
+  useActionData,
+  useNavigation,
+} from 'react-router-dom'
 
 import classes from './AuthForm.module.css'
+import React from 'react'
 
-function AuthForm() {
-  const [isLogin, setIsLogin] = useState(true)
+interface IMyData {
+  errors?: { [key: string]: string }
+  message?: string
+}
 
-  function switchAuthHandler() {
-    setIsLogin((isCurrentlyLogin) => !isCurrentlyLogin)
-  }
+const AuthForm = () => {
+  const data = useActionData() as IMyData
+  const navigation = useNavigation()
+
+  const [searchParams] = useSearchParams()
+  const isLogin = searchParams.get('mode') === 'login'
+  const isSubmitting = navigation.state === 'submitting'
 
   return (
-    <Form method='post' className={classes.form}>
-      <Typography variant='h5'>
+    <Form
+      method='post'
+      className={classes.form}
+      style={{
+        padding: '30px',
+        backgroundColor: 'white',
+        borderRadius: '20px',
+      }}
+    >
+      <Typography variant='h5' sx={{ color: 'black' }}>
         {isLogin ? 'Log in' : 'Create a new user'}
       </Typography>
-      <p>
+      {data && data.errors && (
+        <ul>
+          {Object.values(data.errors).map((err: any) => (
+            <li key={err} style={{ color: 'red' }}>
+              {err}
+            </li>
+          ))}
+        </ul>
+      )}
+      {data && data.message && (
+        <p style={{ color: 'red', paddingLeft: '40px' }}>{data.message}</p>
+      )}
+      <Box sx={{ paddingTop: '15px' }}>
         <TextField
           label='Email'
           id='email'
@@ -25,8 +57,8 @@ function AuthForm() {
           required
           className={classes.input}
         />
-      </p>
-      <p>
+      </Box>
+      <Box sx={{ paddingTop: '15px' }}>
         <TextField
           label='Password'
           id='password'
@@ -35,22 +67,22 @@ function AuthForm() {
           required
           className={classes.input}
         />
-      </p>
+      </Box>
       <div className={classes.actions}>
-        <Button
-          onClick={switchAuthHandler}
-          className={classes.button}
-          type='button'
+        <Link
+          to={`?mode=${isLogin ? 'signup' : 'login'}`}
+          style={{ color: 'black' }}
         >
           {isLogin ? 'Create new user' : 'Login'}
-        </Button>
+        </Link>
         <Button
           variant='contained'
           color='primary'
           className={classes.button}
           type='submit'
+          disabled={isSubmitting}
         >
-          Save
+          {isSubmitting ? 'Submitting...' : 'Save'}
         </Button>
       </div>
     </Form>
