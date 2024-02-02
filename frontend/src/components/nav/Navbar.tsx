@@ -1,15 +1,16 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import {
   AppBar,
   IconButton,
   Stack,
   Toolbar,
-  Typography,
   styled,
   AppBarProps,
 } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Form, Link, useLocation, useRouteLoaderData } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import LogoutIcon from '@mui/icons-material/Logout'
 
 import { logo } from '../../utils/constants'
 import SearchBar from '../SearchBar'
@@ -44,6 +45,11 @@ const AppBarStyled = styled(AppBar, {
 }))
 
 const Navbar: FC<INavbarProps> = ({ toggle, open }) => {
+  const token = useRouteLoaderData('root')
+  const location = useLocation()
+
+  const isAuthPage = location.pathname === '/auth'
+
   return (
     <>
       <AppBarStyled position='fixed' open={open}>
@@ -66,10 +72,30 @@ const Navbar: FC<INavbarProps> = ({ toggle, open }) => {
               width: '100%',
             }}
           >
-            <Link to='/' style={{ display: 'flex', alignItems: 'center' }}>
+            <Link to='/new' style={{ display: 'flex', alignItems: 'center' }}>
               <img src={logo} alt='logo' height={45} />
             </Link>
-            <SearchBar />
+            {!isAuthPage && <SearchBar />}
+            <Stack direction='row' alignItems='center' spacing={2}>
+              {!token ? (
+                <Link
+                  to='auth?mode=login'
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginRight: '20px',
+                  }}
+                >
+                  <AccountCircleIcon sx={{ fontSize: '38px' }} />
+                </Link>
+              ) : (
+                <Form action='/logout' method='post'>
+                  <button type='submit'>
+                    <LogoutIcon sx={{ color: 'red' }} />
+                  </button>
+                </Form>
+              )}
+            </Stack>
           </Stack>
         </Toolbar>
       </AppBarStyled>

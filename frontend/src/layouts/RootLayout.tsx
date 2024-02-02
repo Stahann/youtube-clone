@@ -1,15 +1,36 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Outlet, useLoaderData, useSubmit } from 'react-router-dom'
 
 import { Box } from '@mui/material'
-import Navbar from '../components/nav/Navbar'
 import Drawer from '../components/nav/Drawer'
 import { Main } from '../components/nav/Main'
+import { getTokenDuration } from '../utils/auth'
 
 const RootLayout = () => {
   const [open, setOpen] = React.useState(false)
 
   const toggleDrawer = () => setOpen(!open)
+
+  const token = useLoaderData()
+  const submit = useSubmit()
+
+  useEffect(() => {
+    if (!token) {
+      return
+    }
+
+    if (token === 'EXPIRED') {
+      submit(null, { action: '/logout', method: 'post' })
+      return
+    }
+
+    const tokenDuration = getTokenDuration()
+    console.log(tokenDuration)
+
+    setTimeout(() => {
+      submit(null, { action: '/logout', method: 'post' })
+    }, tokenDuration)
+  }, [token, submit])
 
   return (
     <>
