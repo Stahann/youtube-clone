@@ -19,7 +19,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import Navbar from './Navbar'
 import { categories } from '../../utils/constants'
-import path from 'path'
+// import path from 'path'
 
 const drawerWidth = 240
 
